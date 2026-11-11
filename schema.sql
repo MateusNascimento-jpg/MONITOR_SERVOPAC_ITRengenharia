@@ -1,10 +1,12 @@
 PRAGMA foreign_keys = ON;
 
 -- Table 1: raw data exactly as received from the machine (serial or printer)
+-- Table 1: raw data exactly as received from the machine (serial or printer)
 CREATE TABLE IF NOT EXISTS raw_captures (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     received_at  TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
     source       TEXT    NOT NULL CHECK (source IN ('serial', 'printer')),
+    settings     TEXT,
     content      BLOB    NOT NULL,
     processed    INTEGER NOT NULL DEFAULT 0 CHECK (processed IN (0, 1))
 );

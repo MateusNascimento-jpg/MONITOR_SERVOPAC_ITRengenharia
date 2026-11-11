@@ -9,11 +9,11 @@ SCHEMA_FILE = FOLDER / "schema.sql"
 schema = SCHEMA_FILE.read_text(encoding="utf-8") 
 
 conn = sqlite3.connect(DB_FILE) 
-conn = conn.executescript(schema)
+conn.executescript(schema)
 tables = conn.execute(
     "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
 ).fetchall()
 conn.close()
 
 print(f"Database is ready: {DB_FILE}" ) 
-print(f"Tables", [t[0] for t in tables]) 
+print("Tables", [t[0] for t in tables]) 
