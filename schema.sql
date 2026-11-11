@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS raw_captures (
     received_at  TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
     source       TEXT    NOT NULL CHECK (source IN ('serial', 'printer')),
     settings     TEXT,
+    sent BLOB,
     content      BLOB    NOT NULL,
     processed    INTEGER NOT NULL DEFAULT 0 CHECK (processed IN (0, 1))
 );
